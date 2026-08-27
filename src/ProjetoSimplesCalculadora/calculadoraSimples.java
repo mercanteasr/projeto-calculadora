@@ -10,6 +10,8 @@ import static java.lang.Math.cbrt;
 public class calculadoraSimples {
     public static void main(String[] args){
 
+        estatistica();
+
         Scanner leitorOpcao = new Scanner(System.in);
         int opcao = 0;
 
@@ -198,6 +200,8 @@ public class calculadoraSimples {
         double somaPonderada = 0;
         double somaPesos = 0;
         double pesos = 0;
+        double desvioPadrao = 0;
+        double variancia = 0;
 
 
 
@@ -285,17 +289,42 @@ public class calculadoraSimples {
                     break;
 
                 case 4:
-                    System.out.println("BREVE");
+
+                    System.out.println("| Desvio Padrão |");
+                    System.out.println("_____________________");
+                    System.out.println("Quantos numeros?");
+                    numeros = leitorNumero.nextInt();
+
+                    double[] numerosArrayDesvio = new double[numeros];
+
+                    for(int i = 0; i < numeros; i++){
+                        System.out.format("Digite numero [%d]: ", i + 1);
+                        numero1 = leitorNumero.nextDouble();
+                        numerosArrayDesvio[i] = numero1;
+                        soma += numero1;
+                    }
+
+                    mediaAritimetica = soma / numeros;
+
+                    double somaQuadrados = 0;
+                    for(int i = 0; i < numeros; i++){
+                        double diferenca = numerosArrayDesvio[i] - mediaAritimetica;
+                        somaQuadrados += diferenca * diferenca;
+                    }
+
+                    variancia = somaQuadrados / numeros;
+                    desvioPadrao = Math.sqrt(variancia);
+
+                    System.out.println("Variância = " + variancia);
+                    System.out.println("Desvio padrão = " + desvioPadrao);
 
                     break;
 
                 case 5:
-                    System.out.println("BREVE");
 
                     break;
 
                 case 6:
-                    System.out.println("BREVE");
 
                     break;
             }
