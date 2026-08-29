@@ -2,15 +2,11 @@ package ProjetoSimplesCalculadora;
 
 import java.util.Scanner;
 import java.util.Arrays;
-import static java.lang.Math.pow;
-import static java.lang.Math.sqrt;
-import static java.lang.Math.cbrt;
+import static java.lang.Math.*;
 
 
 public class calculadoraSimples {
     public static void main(String[] args){
-
-        estatistica();
 
         Scanner leitorOpcao = new Scanner(System.in);
         int opcao = 0;
@@ -20,6 +16,7 @@ public class calculadoraSimples {
             System.out.println("[1] Operações Basicas (+ -  x  ÷ )/");
             System.out.println("[2] Potencias e raizes/");
             System.out.println("[3] Estatística (media, media, desvio...)/");
+            System.out.println("[4] Conversor (temp., ângulo, distância etc)/");
             opcao = leitorOpcao.nextInt();
 
 
@@ -33,9 +30,11 @@ public class calculadoraSimples {
                 case 3:
                     estatistica();
                     break;
+                case 4:
+                    conversor();
             }
 
-        }while(opcao != 4);
+        }while(opcao != 5);
     }
 
     public static void operacoesBasicas(){
@@ -66,7 +65,9 @@ public class calculadoraSimples {
 
             switch (opcaoOperacoes) {
                 case 1:
-                    System.out.println("| Calculo de soma |\n");
+                    System.out.println("________________________");
+                    System.out.println("| Calculo de soma | ");
+                    System.out.println("________________________");
                     numero1 = leitorNumero.nextDouble();
                     System.out.println("+");
                     numero2 = leitorNumero.nextDouble();
@@ -76,7 +77,9 @@ public class calculadoraSimples {
                     break;
 
                 case 2:
-                    System.out.println("| Calculo de Subtração |\n");
+                    System.out.println("________________________");
+                    System.out.println("| Calculo de Subtração |");
+                    System.out.println("________________________");
                     numero1 = leitorNumero.nextDouble();
                     System.out.println("-");
                     numero2 = leitorNumero.nextDouble();
@@ -86,7 +89,9 @@ public class calculadoraSimples {
                     break;
 
                 case 3:
-                    System.out.println("| Calculo de Multiplicação |\n");
+                    System.out.println("________________________");
+                    System.out.println("| Calculo de Multiplicação | ");
+                    System.out.println("________________________");
                     numero1 = leitorNumero.nextDouble();
                     System.out.println(".");
                     numero2 = leitorNumero.nextDouble();
@@ -98,7 +103,9 @@ public class calculadoraSimples {
                 case 4:
                     double restoDivisao = 0;
 
-                    System.out.println("| Calculo da Divisão |\n");
+                    System.out.println("________________________");
+                    System.out.println("| Calculo da Divisão | ");
+                    System.out.println("________________________");
 
                     System.out.println("Digite o numero do DIVISOR:");
                     numero1 = leitorNumero.nextDouble();
@@ -107,9 +114,9 @@ public class calculadoraSimples {
                     numero2 = leitorNumero.nextDouble();
 
                     divisao = numero2 / numero1;
-
-                    System.out.format("A divisão entre %.0f e %.0f = %.0f ", numero1, numero2, divisao);
-
+                    System.out.println("________________________");
+                    System.out.format("A divisão entre %.0f e %.0f = %.0f \n", numero1, numero2, divisao);
+                    System.out.println("________________________");
                     restoDivisao = numero2 % numero1;
 
                     if (restoDivisao != 0) {
@@ -137,6 +144,8 @@ public class calculadoraSimples {
             System.out.println("[2] Raiz quadrada/");
             System.out.println("[3] Raiz cúbica");
             System.out.println("[4] Raiz N-ésima (a^(1/n))/");
+            System.out.println("[5] Voltar ao menu principal/");
+            System.out.println("| Digite um numero para escolha |\n");
             opcao = leitorNumero.nextInt();
 
             switch (opcao){
@@ -213,9 +222,10 @@ public class calculadoraSimples {
             System.out.println("[1] Média Aritimética/");
             System.out.println("[2] Média Ponderada/");
             System.out.println("[3] Mediana/");
-            System.out.println("[4] Desvio Padrão/");
-            System.out.println("[5] Variancia/");
-            System.out.println("[6] Máximo e Mínimo/");
+            System.out.println("[4] Desvio Padrão e Variância/");
+            System.out.println("[5] Máximo e Mínimo/");
+            System.out.println("[6] Voltar ao menu principal/");
+            System.out.println("| Digite um numero para escolha |\n");
             opcao = leitorNumero.nextInt();
 
             switch (opcao){
@@ -321,14 +331,157 @@ public class calculadoraSimples {
                     break;
 
                 case 5:
+                    System.out.println("| Maximo e Minimo |");
+                    System.out.println("_____________________");
+                    System.out.println("Quantos numeros?");
+                    numeros = leitorNumero.nextInt();
 
+
+                    System.out.format("Digite numero [1]: ");
+                    double numeroMN = leitorNumero.nextDouble();
+
+                    double maximo = numeroMN;
+                    double minimo = numeroMN;
+
+                    for(int i = 0; i < numeros - 1; i++){
+                        System.out.format("Digite numero [%d]: ", i + 2);
+                        numeroMN = leitorNumero.nextDouble();
+
+                        if(numeroMN > maximo){
+                            maximo = numeroMN;
+                        }
+                        if(numeroMN < minimo){
+                            minimo = numeroMN;
+                        }
+                    }
+
+                    System.out.println("Maximo = " + maximo);
+                    System.out.println("Minimo = " + minimo);
+
+                    break;
+
+            }
+
+        }while(opcao != 6);
+    }
+
+    public static void conversor(){
+        Scanner leitorNumero = new Scanner(System.in);
+        int opcao = 0;
+        double graus = 0;
+        double radianos = 0;
+
+        double PI = 3.1415f;
+        int fahrenheit = 0;
+        int celsius = 0;
+        double quilometros = 0;
+        double milhas = 0;
+
+        do {
+            System.out.println("\n\nCalculadora simples em Java");
+            System.out.println("----------MENU----------\n");
+            System.out.println("[1] Graus  → Radianos/");
+            System.out.println("[2] Radianos  → Graus/");
+            System.out.println("[3] Celsius  → Fahrenheit/");
+            System.out.println("[4] Fahrenheit → Celsius/");
+            System.out.println("[5] Celsius → Kelvin/");
+            System.out.println("[6] Km → Milhas/");
+            System.out.println("[7] Milhas → Km/");
+            System.out.println("[8] Voltar ao menu principal/");
+            System.out.println("| Digite um numero para escolha |\n");
+
+            opcao = leitorNumero.nextInt();
+
+            switch (opcao){
+
+                case 1:
+
+                    System.out.println("| Graus  → Radianos |");
+                    System.out.println("________________________");
+                    System.out.print("Digite Quantos Graus: ");
+                    graus = leitorNumero.nextInt();
+                    radianos = (graus * PI) / 180;
+                    System.out.println("________________________");
+                    System.out.format("Radianos ≈ %.4f", radianos);
+                    System.out.println("\n________________________");
+                    break;
+
+                case 2:
+                    System.out.println("| Radianos  → Graus |");
+                    System.out.println("________________________");
+                    System.out.println("Digite Quantos Radianos: ");
+                   radianos = leitorNumero.nextDouble();
+
+                    graus = radianos * (180 / PI);
+
+                    System.out.println("________________________");
+                    System.out.format("Graus ≈ %.1f", graus);
+                    System.out.println("\n________________________");
+                    break;
+
+                case 3:
+                    System.out.println("Celsius  → Fahrenheit");
+                    System.out.println("________________________");
+                    System.out.println("Digite quantos Graus Celsius: ");
+                    celsius = leitorNumero.nextInt();
+
+                    fahrenheit = ((celsius * 9) / 5) + 32;
+
+                    System.out.println("________________________");
+                    System.out.format("Fahrenheit = %d °F", fahrenheit);
+                    System.out.println("\n________________________");
+                    break;
+
+                case 4:
+                    System.out.println("Fahrenheit → Celsius");
+                    System.out.println("________________________");
+                    System.out.println("Digite quantos Graus Fahrenheit: ");
+                    fahrenheit = leitorNumero.nextInt();
+
+                    celsius = ((fahrenheit - 32) * 5) / 9;
+
+                    System.out.println("________________________");
+                    System.out.format("Celsius = %d °C", celsius);
+                    System.out.println("\n________________________");
+                    break;
+
+                case 5:
+                    System.out.println("Celsius → Kelvin");
+                    System.out.println("________________________");
+                    System.out.println("Digite quantos Graus Celsius: ");
+                    celsius = leitorNumero.nextInt();
+
+                    System.out.println("________________________");
+                    System.out.format("Kelvin = %d K", celsius + 273);
+                    System.out.println("\n________________________");
                     break;
 
                 case 6:
+                    System.out.println("Km → Milhas");
+                    System.out.println("________________________");
+                    System.out.println("Digite quantos Km: ");
+                    quilometros = leitorNumero.nextDouble();
 
+                    milhas = quilometros * 0.621371f;
+
+                    System.out.println("________________________");
+                    System.out.format("Milhas = %.2f", milhas);
+                    System.out.println("\n________________________");
+                    break;
+
+                case 7:
+                    System.out.println("Milhas → Km");
+                    System.out.println("________________________");
+                    System.out.println("Digite quantas milhas: ");
+                    milhas = leitorNumero.nextDouble();
+
+                    quilometros = milhas / 0.621371f;
+
+                    System.out.println("________________________");
+                    System.out.format("Quilometros = %.2f", quilometros);
+                    System.out.println("\n________________________");
                     break;
             }
-
-        }while(opcao != 7);
+        }while(opcao != 8);
     }
 }
